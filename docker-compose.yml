@@ -1,0 +1,30 @@
+version: "3"
+services:
+  app:
+    image: brandnewbox/bnb-ruby:2.7-postgresql
+    command: bundle exec puma -C config/puma.rb
+    env_file: .docker-development-vars
+    volumes:
+      - .:/app:cached
+      - hotwire_bundle_cache:/usr/local/bundle:cached
+    ports:
+      - 3000:3000
+    depends_on:
+      - redis
+  webpacker:
+    image: brandnewbox/bnb-ruby:2.7-postgresql
+    environment:
+      - RACK_ENV=development
+      - RAILS_ENV=development
+    command: ./bin/webpack-dev-server
+    volumes:
+      - .:/app:cached
+      - hotwire_bundle_cache:/usr/local/bundle:cached
+    ports:
+      - 3035:3035
+  redis:
+    image: 'redis:3.2-alpine'
+    ports:
+      - 6379:6379
+volumes:
+  hotwire_bundle_cache:
