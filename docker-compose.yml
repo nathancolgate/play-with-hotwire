@@ -11,17 +11,17 @@ services:
       - 3000:3000
     depends_on:
       - redis
-  webpacker:
-    image: brandnewbox/bnb-ruby:2.7-postgresql
-    environment:
-      - RACK_ENV=development
-      - RAILS_ENV=development
-    command: ./bin/webpack-dev-server
-    volumes:
-      - .:/app:cached
-      - hotwire_bundle_cache:/usr/local/bundle:cached
-    ports:
-      - 3035:3035
+  # webpacker:
+  #   image: brandnewbox/bnb-ruby:2.7-postgresql
+  #   environment:
+  #     - RACK_ENV=development
+  #     - RAILS_ENV=development
+  #   command: ./bin/webpack-dev-server
+  #   volumes:
+  #     - .:/app:cached
+  #     - hotwire_bundle_cache:/usr/local/bundle:cached
+  #   ports:
+  #     - 3035:3035
   redis:
     image: 'redis:3.2-alpine'
     ports:
