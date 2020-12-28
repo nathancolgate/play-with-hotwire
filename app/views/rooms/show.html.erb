@@ -15,7 +15,7 @@
 <% end %>
 
 <div id="messages">
-  <%= render partial: 'rooms/messages/message', collection: @room.messages %>
+  <%= render @room.messages %>
 </div>
 
 <%= turbo_frame_tag 'new_message', src: new_room_message_path(@room), target: "_top" %>

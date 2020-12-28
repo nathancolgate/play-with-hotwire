@@ -1,4 +1,4 @@
-class Rooms::MessagesController < ApplicationController
+class MessagesController < ApplicationController
   before_action :set_room
 
   # GET /rooms/new
